@@ -8,9 +8,12 @@ from .. import settings as latex_settings
 register = template.Library()
 
 
-regex_math_inline = r'(?<!\\)\$(([^\$]).*?)(?<!\\)(\$)(?=[^\$]|$)'
-regex_math_block = r'(?<!\\)\$\$((.*?))(?<!\\)\$\$'
-
+if latex_settings.LATEX_MATH_ESCAPE_DELIM:
+    regex_math_inline = r'(?<!\\)\\\$(([^\$]).*?)(?<!\\)(\\\$)(?=[^\$]|$)'
+    regex_math_block = r'(?<!\\)\\\$\$((.*?))(?<!\\)\\\$\$'
+else:
+    regex_math_inline = r'(?<!\\)\$(([^\$]).*?)(?<!\\)(\$)(?=[^\$]|$)'
+    regex_math_block = r'(?<!\\)\\\$\$((.*?))(?<!\\)\\\$\$'
 
 @register.inclusion_tag('latexify/latexify.html')
 def latexify(text,
