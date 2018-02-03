@@ -8,8 +8,8 @@ from .. import settings as latex_settings
 register = template.Library()
 
 
-regex_math_inline = r'(?<!\\)\\\$(([^\$]).*?)(?<!\\)(\\\$)(?=[^\$]|$)'
-regex_math_block = r'(?<!\\)\\\$\$((.*?))(?<!\\)\\\$\$'
+regex_math_inline = r'(?<!\\)\$(([^\$]).*?)(?<!\\)(\$)(?=[^\$]|$)'
+regex_math_block = r'(?<!\\)\$\$((.*?))(?<!\\)\$\$'
 
 
 @register.inclusion_tag('latexify/latexify.html')
